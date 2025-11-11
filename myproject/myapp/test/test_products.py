@@ -1,9 +1,32 @@
+
+
 import pytest
+from django.urls import reverse
 from rest_framework.test import APIClient
 from myapp.models import Product,Category
 
 
+@pytest.mark.django_db
+def test_get_category():
+    #create sample Category
+    Category.objects.create(name="Clothes")
+    Category.objects.create(name="Electronics")
 
+    client = APIClient()
+    url = reverse('category_list')
+
+    #Send GET request
+    response = client.get('/category_list/') #the same as the url path
+
+    # Check for response data
+    assert response.status_code == 200
+
+    # Access the 'results' key because of pagination
+    #Whenever DRF pagination is enabled, always use response.json()['results'] to get the list of items.
+    data = response.json()['results']
+    assert  len(data) == 2
+    assert  data[0] ['name'] == "Clothes"
+    assert  data[1] ['name'] == "Electronics"
 
 @pytest.mark.django_db
 def test_get_products():
