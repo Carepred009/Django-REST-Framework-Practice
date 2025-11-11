@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2> Create Product</h2>
+
+    {% if success%}
+        <p style="color:green">Product Created Successfully!</p>
+    {%endif%}
+
+    {%if errors%}
+            <ul style="color:red;">
+                {% for field, error_list in errors.items %}
+                    <li> {{field}}: {{error_list.0}}</li>
+                {%endfor%}
+            </ul>
+    {%endif%}
+
+   <form id="productForm" method="post">
+    {% csrf_token %}
+    <input type="text" id="name" placeholder="Name"><br><br>
+    <input type="number" id="price" placeholder="Price"><br><br>
+    <button type="submit">Add</button>
+  </form>
+
+  <pre id="result"></pre>
+
+  <script>
+    const form = document.getElementById("productForm");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();  // Stop normal form submit
+
+      const data = {
+        name: document.getElementById("name").value,
+        price: document.getElementById("price").value
+      };
+
+      const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+
+      fetch("api/products/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrfToken
+        },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(json => {
+        document.getElementById("result").textContent = JSON.stringify(json, null, 2);
+      });
+    });
+  </script>
+
+
+</body>
+</html>

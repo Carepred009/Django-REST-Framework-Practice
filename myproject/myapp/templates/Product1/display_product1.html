@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="container">
+  <h2>Category List</h2>
+  <ul id="categories"></ul>
+
+  <script>
+    // JS fetches data from DRF API
+    fetch('myapp/api/category_list/')
+        .then(res => res.json())
+        .then(data => {
+        const ul = document.getElementById('categories');
+        data.forEach(cat => {
+          const li = document.createElement('li');
+          li.textContent = cat.name;
+          ul.appendChild(li);
+        });
+      });
+  </script>
+</div>
+</body>
+</body>
+</html>
