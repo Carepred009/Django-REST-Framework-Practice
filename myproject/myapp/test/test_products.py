@@ -1,5 +1,6 @@
 from decimal import Decimal
 from http.client import responses
+from itertools import product
 from pydoc import resolve
 from tkinter.font import names
 
@@ -99,3 +100,30 @@ def test_update_product():
     assert product.name == "T5 LAPAD"
     assert product.price == 700
     assert product.description == "WIDER"
+
+@pytest.mark.django_db
+def test_delete_product():
+
+    #Create test user
+    user = User.objects.create_user(username="DRF_sample", password="ppp")
+
+
+    #Create the Category because we have foreign key
+    cat1 = Category.objects.create(name="Electronics")
+
+
+    #Create a sample product to test in the database
+    product = Product.objects.create(name="LAPTOP", price=900, category = cat1, description="15 inches")
+
+    client = APIClient()
+    # Force login (simulate authenticated user)
+    client.force_authenticate(user=user)
+
+    url = reverse('delete_product', args=[product.id])
+
+    #Send DELETE request
+    response = client.delete(url)
+
+    #Assertions
+    assert  response.status_code == 204 # No content (success)
+    assert  Product.objects.count() == 0 #Product deleted
