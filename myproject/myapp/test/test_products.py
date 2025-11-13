@@ -89,7 +89,7 @@ def test_update_product():
     #send the PUT request to update the Product
     response = client.put(url, updated_data, format='json')
 
-    #AssertionL check that update worked
+    #AssertionL check d update worked
     assert response.status_code == 200 # expect HTTP 200 ok
     assert response.data['name'] == "T5 LAPAD"
     assert float(response.data['price'] )== 700.00
