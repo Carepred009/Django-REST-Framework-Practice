@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- Simple fetch from backend to frontend display in DRF with js script -->
+
+<h1>Simple fetch from backend to frontend display in DRF with js script</h1>
+<div id="products">
+
+</div>
+<script>
+    fetch('http://localhost:8000/product_list/')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('products');
+        data.results.forEach(product => {
+          container.innerHTML += `${product.name} - $${product.price} - ${product.category} - ${product.description}<br>`;
+        });
+      });
+  </script>
+</body>
+</html>
