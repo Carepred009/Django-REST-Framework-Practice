@@ -6,6 +6,17 @@ from .serializers import ProductSerializer, CategorySerializer
 
 
 # Create your views here.
+
+#for Category only Listing the data category
+
+
+class ProductCreateAPIView(generics.CreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+def product_create(request):
+    return render(request,'myapp/product_create.html')
+
 #Will use this for now fetch with js script
 class CategoryListAPIView(generics.ListAPIView):
     #queryset = Category.objects.all().order_by('id')  will use this for Pytest
