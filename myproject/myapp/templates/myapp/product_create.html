@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2> Add product</h2>
+
+<form method="POST" id="productForm">
+    {%csrf_token%}
+    <label> Product Name</label><br>
+    <input type="text" id="name" name="name"><br><br>
+
+    <label>Price:</label><br>
+    <input type="number" id="price" name="price"><br><br>
+
+     <label>Category:</label><br>
+        <select id="category" name="category">
+            <option value="">-- Select Category --</option>
+        </select><br><br>
+    <label>Descritption</label><br><br>
+    <input type="text" id="description"  name="description"> <br><br>
+
+    <button type="submit">ADD product</button>
+
+</form>
+
+<script>
+    //fetch all categories when the page loads
+ document.addEventListener('DOMContentLoaded', async function() {
+    const response = await fetch('/category_list/');
+    const data = await response.json();
+
+    const categories = data.results || data;  // handle both paginated or non-paginated
+    const categorySelect = document.getElementById('category');
+
+    categories.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat.id;
+        option.textContent = cat.name;
+        categorySelect.appendChild(option);
+    });
+});
+
+
+
+    //handle the form submit
+    const form = document.getElementById('productForm');
+    form.addEventListener('submit', async function(e){
+        e.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const price = document.getElementById('price').value;
+        const category = document.getElementById('category').value;
+        const description = document.getElementById('description').value
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        await fetch('/product_create/',{
+            method: 'POST',
+            headers:{
+                'Content-Type':'application/json',
+                'X-CSRFToken':csrfToken
+            },
+
+            body: JSON.stringify({
+                name:name,
+                price:price,
+                category_id:parseInt(category) || null, //convert to number
+                description:description
+            })
+        });
+    });
+</script>
+</body>
+</html>

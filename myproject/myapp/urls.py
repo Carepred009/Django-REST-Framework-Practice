@@ -2,11 +2,20 @@
 from django.urls import path
 
 from .views import ProductListCreateAPIView, CategoryListAPIView, ProductUpdateAPIView, ProductDeleteAPIView, \
-    product_page
+    product_page, ProductCreateAPIView,product_create
 
 urlpatterns  = [
 
     path('category_list/', CategoryListAPIView.as_view(), name="category_list"),
+
+    #for category fetch only
+
+    #url path for POST method in with DRF CreateAPIView and fetch
+    path('product_create/',ProductCreateAPIView.as_view(), name="product_create"),
+
+    #url path for displaying html template for display form that accept input
+    path('create_page/', product_create, name="product_create"),
+
 
     #url path to display the the retrieve from backend to frontend
     path('',product_page,name="product_display"), # HTML FRONTEND
