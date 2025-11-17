@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-- Dropdown to select product -->
+<h1> Product Update</h1>
+    <select id="productSelect">
+          <option value=""> --Select Product</option>
+    </select><br><br>
+
+<!-- Product Update Form -->
+<form id="UpdateForm">
+    {%csrf_token%}
+    <label>Product Name: </label>
+    <input type="text" id="name" name="name"><br><br>
+
+    <label>Product Price</label>
+    <input type="number" id="price" name="price"><br><br>
+
+    <select id="category" name="category">
+    <option value="">-- Select Category --</option>
+    {% for cat in categories %}
+        <option value="{{ cat.id }}">{{ cat.name }}</option>
+    {% endfor %}
+    </select>
+
+
+    <label>Category:</label><br>
+            <select id="category" name="category">
+                <option value="">-- Select Category --</option>
+            </select><br><br>
+
+    <!--
+    <label>Category</label>
+    <input type="text" id="category" name="category"> <br><br>
+ -->
+
+    <label>Product description</label>
+    <input type="text" id="description" name="description"><br><br>
+
+    <button type="submit">Update Product</button>
+</form>
+
+<pre id="result"></pre>
+
+<script>
+// ---------------------
+// 1. Load products into dropdown
+// ---------------------
+
+fetch('http://localhost:8000/product_list/')
+    .then(res => res.json())
+    .then(data =>{
+        const products = data.results || data;
+        const select = document.getElementById('productSelect');
+
+        products.forEach(prod => {
+            const option = document.createElement('option');
+            option.value = prod.id;
+            option.textContent = prod.name;
+            select.appendChild(option);
+        });
+    });
+
+
+//
+// 2. Display the Category
+ document.addEventListener('DOMContentLoaded', async function() {
+    const response = await fetch('/category_list/');
+    const data = await response.json();
+
+    const categories = data.results || data;  // handle both paginated or non-paginated
+    const categorySelect = document.getElementById('category');
+
+    categories.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat.id;
+        option.textContent = cat.name;
+        categorySelect.appendChild(option);
+    });
+});
+
+// ---------------------
+// 2. When product selected → load product details
+// ---------------------
+document.getElementById("productSelect").addEventListener("change", function(e){
+    const productId = this.value;
+
+    if (!productId) return;
+
+    fetch(`http://localhost:8000/product_update/${productId}/`)
+        .then(res => res.json())
+        .then(prod => {
+            document.getElementById("name").value = prod.name;
+            document.getElementById("price").value = prod.price;
+            document.getElementById("category").value = prod.category;
+            document.getElementById("description").value = prod.description;
+        });
+  });
+
+
+
+
+// ---------------------
+// 3. Submit UPDATE via fetch PUT
+// ---------------------
+document.getElementById("UpdateForm").onsubmit = function(e) {
+    e.preventDefault();
+
+    const productId = document.getElementById("productSelect").value;
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+//     fetch('http://127.0.0.1:8000/product_update/${productId}/', { in this CORS ERROR
+ fetch(`http://localhost:8000/product_update/${productId}/`, {
+    method: "PUT",
+    headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrftoken
+    },
+    body: JSON.stringify({
+        name: document.getElementById("name").value,
+        price: parseFloat(document.getElementById("price").value),
+        description: document.getElementById("description").value,
+        category: parseInt(document.getElementById("category").value)
+    })
+})
+    .then(res => res.json())
+    .then(data => {
+        alert("Product update Successfully!");
+    });
+
+};
+
+
+</script>
+
+</body>
+</html>
