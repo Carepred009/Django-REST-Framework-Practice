@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DRF + Vue.js Example</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <!--use this for to tell django this is for Vue -->
+    {% verbatim %}
+  <h2>Category List</h2>
+
+  <button @click="loadCategory">Load Category</button>
+
+  <ul>
+    <li v-for="p in category" :key="p.id">
+      {{ p.id }} - {{ p.name }}
+    </li>
+  </ul>
+    {% endverbatim %}
+</div>
+<script>
+   const { createApp} = Vue;
+
+createApp({
+  data(){
+    return {
+    category: []
+    }
+  },
+  methods : {
+    loadCategory(){
+      fetch('http://localhost:8000/api/category_list/')
+     .then(res => res.json())
+        .then(data => {
+            console.log("RAW API:", data); // <-- tell me this output
+            this.category = data;
+      });
+    }
+  }
+
+}).mount("#app")
+</script>
+
+</body>
+</html>

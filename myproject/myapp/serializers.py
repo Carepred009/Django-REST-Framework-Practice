@@ -3,10 +3,11 @@
 from rest_framework import serializers
 from .models import Product,Category
 
+#we will use this for Vue.js display
 class  CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['id','name']
+        fields = '__all__'
 
 class ProductSerializer(serializers.ModelSerializer):
     #category_name = serializers.StringRelatedField(source='category', read_only=True) #uses __str__ of Category
@@ -18,5 +19,5 @@ class ProductSerializer(serializers.ModelSerializer):
     )
     class Meta:
         model = Product
-        fields = ['name','price','category_id','category', 'description']
+        fields = ['id','name','price','category_id','category', 'description']
 

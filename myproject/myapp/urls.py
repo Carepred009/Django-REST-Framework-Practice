@@ -2,13 +2,17 @@
 from django.urls import path
 
 from .views import ProductListCreateAPIView, CategoryListAPIView, ProductUpdateAPIView, ProductDeleteAPIView, \
-    product_page, ProductCreateAPIView,product_create
+    product_page, ProductCreateAPIView, product_create, product_update, display_category
 
 urlpatterns  = [
 
-    path('category_list/', CategoryListAPIView.as_view(), name="category_list"),
-
+    #We will us this for Vue.js
+    path('api/category_list/', CategoryListAPIView.as_view(), name="category_list"),
+    #display the category in html template with Vue
+    path('display_category/', display_category, name="display_category"),
     #for category fetch only
+
+
 
     #url path for POST method in with DRF CreateAPIView and fetch
     path('product_create/',ProductCreateAPIView.as_view(), name="product_create"),
@@ -23,7 +27,15 @@ urlpatterns  = [
     path('product_list/',ProductListCreateAPIView.as_view(), name="product_list"),
 
 
-    path('update_product/<int:pk>/', ProductUpdateAPIView.as_view(), name="update_product"),
+
+    #for for Browsable API testing
+    path('product_update/<int:pk>/', ProductUpdateAPIView.as_view(), name="update_product"),
+
+    #product displaly from DRF to html template back to DRF
+    path('product_update/', product_update, name="product_update"),
+
+
+
     #for delete
     path('delete_product/<int:pk>/', ProductDeleteAPIView.as_view(), name="delete_product")
 
