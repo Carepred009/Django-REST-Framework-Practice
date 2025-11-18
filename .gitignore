@@ -4,6 +4,11 @@
 # Environment variables
 .env
 
+# vuejs node and dist
+frontend/myprojectvue/node_modules/
+frontend/myprojectvue/dist/
+
+
 # Python cache
 __pycache__/
 *.pyc
