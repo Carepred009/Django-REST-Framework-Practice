@@ -7,7 +7,18 @@
     <p v-if="apiMessage">
       <strong>Response:</strong> {{ apiMessage }}
     </p>
+
   </div>
+
+<!--<food-ite/> is from main.js -->
+  <div>
+    <h1> Food</h1>
+    <food-item/>
+    <food-item/>
+    <food-item/>
+
+  </div>
+
 </template>
 
 <script>
@@ -34,6 +45,21 @@ export default {
 </script>
 
 <style>
+
+#app > div {
+    border: dashed black 1px;
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    background-color: lightgreen;
+
+}
+
+#app > div:hover {
+  cursor: pointer;
+}
+
+
 h1 {
   color: #42b983;
 }
