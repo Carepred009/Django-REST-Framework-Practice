@@ -2,9 +2,14 @@
 from django.urls import path
 
 from .views import ProductListCreateAPIView, CategoryListAPIView, ProductUpdateAPIView, ProductDeleteAPIView, \
-    product_page, ProductCreateAPIView, product_create, product_update, display_category
+    product_page, message_list, ProductCreateAPIView, product_create, product_update, display_category
 
 urlpatterns  = [
+
+    #use for frontend sample display
+    path('api/message/', message_list),
+
+
 
     #We will us this for Vue.js
     path('api/category_list/', CategoryListAPIView.as_view(), name="category_list"),
