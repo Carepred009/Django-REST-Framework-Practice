@@ -1,13 +1,29 @@
+from django.db.models.fields import return_None
 from django.shortcuts import render
 
 from rest_framework import generics
+
+
 from .models import Product, Category
 from .serializers import ProductSerializer, CategorySerializer
+
+#use for frontend sample display
+from rest_framework.response import Response
+from  rest_framework.decorators import api_view
 
 
 # Create your views here.
 
 #for Category only Listing the data category
+
+#use for frontend sample display
+@api_view(['GET'])
+def message_list(request):
+    data = {
+        "message": "Hello from DJANGO REST API!",
+        "status": "success"
+    }
+    return Response(data)
 
 
 
