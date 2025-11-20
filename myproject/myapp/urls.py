@@ -1,15 +1,20 @@
+from tkinter.font import names
 
 from django.urls import path
 
 from .views import ProductListCreateAPIView, CategoryListAPIView, ProductUpdateAPIView, ProductDeleteAPIView, \
-    product_page, message_list, ProductCreateAPIView, product_create, product_update, display_category
+    product_page, message_list, ItemListCreateAPIView, ProductCreateAPIView, product_create, product_update, display_category
 
 urlpatterns  = [
 
+
+    #for ItemCreateAPIView
+    path('api/create_item/',ItemListCreateAPIView.as_view(), name="create_item"),
+    path('api/create_item/list/',ItemListCreateAPIView.as_view(),name="create_item_list"),
+
+
     #use for frontend sample display
     path('api/message/', message_list),
-
-
 
     #We will us this for Vue.js
     path('api/category_list/', CategoryListAPIView.as_view(), name="category_list"),

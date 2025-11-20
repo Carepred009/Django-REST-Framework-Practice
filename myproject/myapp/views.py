@@ -4,15 +4,25 @@ from django.shortcuts import render
 from rest_framework import generics
 
 
-from .models import Product, Category
-from .serializers import ProductSerializer, CategorySerializer
+from .models import Product, Category,Item
+from .serializers import ProductSerializer, CategorySerializer, ItemSerializer
 
 #use for frontend sample display
 from rest_framework.response import Response
 from  rest_framework.decorators import api_view
 
+from rest_framework.permissions import AllowAny
+
 
 # Create your views here.
+
+#for DRF+Vue+axios
+class ItemListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+    permission_classes = [AllowAny]  # <-- add this no authenticaion and CSRF Token required for now because we are using Vue not Django templates
+
+
 
 #for Category only Listing the data category
 

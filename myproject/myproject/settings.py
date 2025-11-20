@@ -116,12 +116,17 @@ REST_FRAMEWORK = {
 
     #for Permission and authentication
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',  # for login via Django admin
+    #we will comment this for the mean time because  we are practicing CRUD in FE AND BE
+       #'rest_framework.authentication.SessionAuthentication',  # for login via Django admin
         'rest_framework.authentication.BasicAuthentication',     # for API testing with cURL or Postman
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        #e will comment this for the mean time because  we are practicing CRUD in FE AND BE
+        #'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        #'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        #recommend set up for now
+        'rest_framework.permissions.AllowAny',
     ]
 }
 

@@ -19,6 +19,12 @@
 
   </div>
 
+  <div>
+  <h1> ADD Item</h1>
+   <add-item/>
+
+  </div>
+
 </template>
 
 <script>
