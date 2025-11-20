@@ -4,6 +4,15 @@ from  django.db import models
 
 # Create your models here.
 
+#This model is for PUT/PATCH DRF_Vue_axios
+class Book(models.Model):
+    title = models.CharField(max_length=200)
+    author = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.title
+
+#model of POST method in DRF+Vue+axios
 class Category(models.Model):
     name = models.CharField(max_length=150)
 
