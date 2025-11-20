@@ -25,6 +25,14 @@
 
   </div>
 
+
+<!-- for PATCH-PUT DRF-Vue-axios -->
+  <div>
+  <h1> Update the book model</h1>
+    <update-book/>
+  </div>
+
+
 </template>
 
 <script>

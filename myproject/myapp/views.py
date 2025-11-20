@@ -4,8 +4,8 @@ from django.shortcuts import render
 from rest_framework import generics
 
 
-from .models import Product, Category,Item
-from .serializers import ProductSerializer, CategorySerializer, ItemSerializer
+from .models import Book,Product, Category,Item
+from .serializers import BookSerializer,ProductSerializer, CategorySerializer, ItemSerializer
 
 #use for frontend sample display
 from rest_framework.response import Response
@@ -15,6 +15,14 @@ from rest_framework.permissions import AllowAny
 
 
 # Create your views here.
+
+
+#for PUT/PATCH DRF+Vue+axios
+class BookRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+
 
 #for DRF+Vue+axios
 class ItemListCreateAPIView(generics.ListCreateAPIView):
