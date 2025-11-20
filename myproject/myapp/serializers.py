@@ -1,7 +1,14 @@
 
 
 from rest_framework import serializers
-from .models import Product,Category
+from .models import Product,Category, Item
+
+
+class ItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Item
+        fields = '__all__'
+
 
 #we will use this for Vue.js display
 class  CategorySerializer(serializers.ModelSerializer):
