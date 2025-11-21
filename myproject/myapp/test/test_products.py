@@ -8,10 +8,69 @@ import pytest
 from django.urls import reverse
 from pytest_django.fixtures import client
 from rest_framework.test import APIClient
-from myapp.models import Product,Category
+from myapp.models import Book, Product,Category, Item
 from  django.contrib.auth.models import User
 from unicodedata import category
 
+@pytest.mark.django_db
+def test_create_Item():
+
+    client = APIClient()
+
+    #Define the data you wan to send
+    data = {
+        "name":"Item1",
+        "description":"Mahal na item"
+    }
+
+    #Send Post request to the API endpoint
+    url = reverse('create_item') #Make sure your URL name is the same
+    response = client.post(url, data, format='json')
+
+    #Assert the API responded with 201 CREATED
+    assert response.status_code == 201
+
+    # added this because its working
+    # This ensures your API returns correct data AND actually saves it.
+    # Catch bugs in either serializer output or saving logic.
+    # check the response, It ok to be remove
+    assert response.data['name'] == "Item1"
+    assert response.data['description'] == "Mahal na item"
+
+    #Assert the object was create in the database
+    #check the database
+    item = Item.objects.get(name="Item1") #gets the actual data if it match the object, if no match raise error DoesNotExist
+    assert item.description == "Mahal na item"  #check if its the actual data inserted
+
+
+@pytest.mark.django_db
+def test_create_book():
+    client = APIClient()
+
+    data = {
+        "title":"Book1",
+        "author":"Love"
+    }
+
+    #Send POST request to the API endpoint
+    url = reverse('create_book') # make sure your URL name is correct
+    response = client.post(url, data, format='json')
+
+    #Asset THE API responded with 201 CREATED
+    assert response.status_code == 201
+
+    # added this because its working
+    # This ensures your API returns correct data AND actually saves it.
+    # Catch bugs in either serializer output or saving logic.
+    # check the response, It ok to be remove
+    assert response.data['title'] == "Book1"
+    assert response.data['author'] == "Love"
+
+
+    #Assert the object was create in the database
+    #check the database
+    book = Book.objects.get(title="Book1")
+    assert book.author == "Love"
 
 @pytest.mark.django_db
 def test_get_category():

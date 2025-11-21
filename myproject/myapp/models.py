@@ -12,6 +12,15 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+
+class Item(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.TextField()
+
+    def __str__(self):
+        return  self.name
+
+
 #model of POST method in DRF+Vue+axios
 class Category(models.Model):
     name = models.CharField(max_length=150)
@@ -31,12 +40,6 @@ class Product(models.Model):
     def __str__(self):
         return  self.name
 
-class Item(models.Model):
-    name = models.CharField(max_length=200)
-    description = models.TextField()
-
-    def __str__(self):
-        return  self.name
 
 
 '''
