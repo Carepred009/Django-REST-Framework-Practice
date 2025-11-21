@@ -2,12 +2,15 @@ from tkinter.font import names
 
 from django.urls import path
 
-from .views import BookRetrieveUpdateAPIView, ProductListCreateAPIView, CategoryListAPIView, ProductUpdateAPIView, ProductDeleteAPIView, \
+from .views import ItemDeleteAPIView, BookRetrieveUpdateAPIView, ProductListCreateAPIView, CategoryListAPIView, ProductUpdateAPIView, ProductDeleteAPIView, \
     product_page, message_list, ItemListCreateAPIView, ProductCreateAPIView, product_create, product_update, display_category
 
 urlpatterns  = [
 
     path('book/<int:pk>/',BookRetrieveUpdateAPIView.as_view(), name="book"),
+
+    #Item DeleteAPIView
+    path('item-delete/<int:pk>/', ItemDeleteAPIView.as_view(), name="item-delete"),
 
     #for ItemCreateAPIView
     path('api/create_item/',ItemListCreateAPIView.as_view(), name="create_item"),

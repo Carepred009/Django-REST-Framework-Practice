@@ -16,6 +16,10 @@ from rest_framework.permissions import AllowAny
 
 # Create your views here.
 
+#for DELETE  DRF+Vue+axios
+class ItemDeleteAPIView(generics.DestroyAPIView):
+    queryset  =Item.objects.all()
+    serializer_class = ItemSerializer
 
 #for PUT/PATCH DRF+Vue+axios
 class BookRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
