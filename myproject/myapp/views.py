@@ -21,6 +21,10 @@ class ItemDeleteAPIView(generics.DestroyAPIView):
     queryset  =Item.objects.all()
     serializer_class = ItemSerializer
 
+class BookCreateAPIView(generics.CreateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
 #for PUT/PATCH DRF+Vue+axios
 class BookRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
     queryset = Book.objects.all()
