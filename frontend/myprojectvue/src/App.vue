@@ -25,6 +25,12 @@
 
   </div>
 
+  <div>
+  <h1>DELETE ITEM</h1>
+    <delete-item/>
+  </div>
+
+
 
 <!-- for PATCH-PUT DRF-Vue-axios -->
   <div>
