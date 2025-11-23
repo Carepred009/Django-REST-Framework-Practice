@@ -12,6 +12,14 @@
     <h1> </h1>
       <input-fields />
   </div>
+
+  <div>
+    <h1>
+        <v-form_sample/>
+    </h1>
+
+  </div>
+
 </template>
 
 
