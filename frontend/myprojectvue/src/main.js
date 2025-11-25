@@ -1,6 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
+//from index.js
+import router from "./router"
+
+
 //from FoodItem.vue
 //import FoodItem from './components/FoodItem.vue'
 
@@ -18,7 +22,6 @@ import Foods from './components/Foods.vue'
 //input-field sample
 import InputFields from './components/InputFields.vue'
 
-import router from './router'
 
 
 const app = createApp(App)

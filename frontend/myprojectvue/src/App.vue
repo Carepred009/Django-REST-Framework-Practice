@@ -1,22 +1,30 @@
 
 
 
+
 <template>
-  <h1>THis is  Vue Props  </h1>
-  <food-name foodName="Pizza"/> <br>
-  <food-name foodName="COke"/> <br>
-  <food-name foodName="Spage"/> <br>
+  <div id="app">
+    <router-view />
 
+    <!--
+             <router-view /> is a built-in placeholder.
+            With router (recommended):
 
-   <div>
-    <h1> </h1>
-      <input-fields />
+        ✔ URL controls which view appears
+        ✔ Pages automatically load in <router-view/>
+        ✔ Cleaner main.js
+        ✔ Organized folder structure
+        ✔ Professional app architecture
+
+    -->
   </div>
 </template>
 
-
-
 <script>
+
+export default {
+  name: "App"
+};
 </script>
 
 <style>
