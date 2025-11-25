@@ -121,7 +121,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',     # for API testing with cURL or Postman
         'rest_framework.authentication.TokenAuthentication',
         #e will comment this for the mean time because  we are practicing CRUD in FE AND BE
-        #'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication', #add this for authentication
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         #'rest_framework.permissions.IsAuthenticatedOrReadOnly',

@@ -18,6 +18,14 @@
 
     -->
   </div>
+
+  <div>
+    <h1>
+        <v-form_sample/>
+    </h1>
+
+  </div>
+
 </template>
 
 <script>

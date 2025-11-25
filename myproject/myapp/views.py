@@ -2,7 +2,7 @@ from django.db.models.fields import return_None
 from django.shortcuts import render
 
 from rest_framework import generics
-
+from rest_framework.views import APIView
 
 from .models import Book,Product, Category,Item
 from .serializers import BookSerializer,ProductSerializer, CategorySerializer, ItemSerializer
@@ -11,10 +11,20 @@ from .serializers import BookSerializer,ProductSerializer, CategorySerializer, I
 from rest_framework.response import Response
 from  rest_framework.decorators import api_view
 
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 
 # Create your views here.
+
+class DashboardView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self,request):
+        return  Response({
+            "message":"Welcome! You accessed a protected route",
+            "user": request.user.username
+
+        })
 
 #for DELETE  DRF+Vue+axios
 class ItemDeleteAPIView(generics.DestroyAPIView):

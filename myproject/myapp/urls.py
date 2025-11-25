@@ -2,10 +2,23 @@ from tkinter.font import names
 
 from django.urls import path
 
-from .views import BookCreateAPIView, ItemDeleteAPIView, BookRetrieveUpdateAPIView, ProductListCreateAPIView, CategoryListAPIView, ProductUpdateAPIView, ProductDeleteAPIView, \
+from .views import DashboardView, BookCreateAPIView, ItemDeleteAPIView, BookRetrieveUpdateAPIView, ProductListCreateAPIView, CategoryListAPIView, ProductUpdateAPIView, ProductDeleteAPIView, \
     product_page, message_list, ItemListCreateAPIView, ProductCreateAPIView, product_create, product_update, display_category
 
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView
+)
+
 urlpatterns  = [
+
+    #Use for login
+    path('api/token/',TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path('api/token/refresh/',TokenRefreshView.as_view(), name="token_refresh"),
+    # Use for login
+    #from view for login Browsable API.
+    path('api/dashboard/', DashboardView.as_view(), name="dashboard"),
+
 
     path('create_book/', BookCreateAPIView.as_view(), name="create_book"),
     path('book/<int:pk>/',BookRetrieveUpdateAPIView.as_view(), name="book"),
