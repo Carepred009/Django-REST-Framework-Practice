@@ -1,6 +1,6 @@
 from tkinter.font import names
 
-from django.urls import path
+
 
 from .views import DashboardView, BookCreateAPIView, ItemDeleteAPIView, BookRetrieveUpdateAPIView, ProductListCreateAPIView, CategoryListAPIView, ProductUpdateAPIView, ProductDeleteAPIView, \
     product_page, message_list, ItemListCreateAPIView, ProductCreateAPIView, product_create, product_update, display_category
@@ -10,7 +10,17 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView
 )
 
+from django.urls import path, include
 urlpatterns  = [
+
+    #use for registration of new user
+    path('auth/', include('dj_rest_auth.urls')),
+    path('auth/registration/', include('dj_rest_auth.registration.urls')),
+
+
+
+
+
 
     #Use for login
     path('api/token/',TokenObtainPairView.as_view(), name="token_obtain_pair"),

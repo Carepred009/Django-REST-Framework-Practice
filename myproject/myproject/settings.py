@@ -10,9 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+
 from pathlib import Path
 
 from decouple import config
+#this is for dj-rest-auth
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,11 +44,27 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #Third-party
     'rest_framework',
+
+    #for dj-rest-auth
+    'rest_framework.authtoken',
+    #dj-rest-auth
+    'dj_rest_auth',
+    'django.contrib.sites',
+
+    # Only if using registration
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount', # add this for allauth.socialaccount
+    'dj_rest_auth.registration',
+
+
     #CORS
     'corsheaders', #add this
     #the app
     'myapp',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware', #add this
@@ -54,8 +73,13 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    #Add this one django-all-auth
+    "allauth.account.middleware.AccountMiddleware",
+
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+
 ]
 # 3. Allow Vue to connect (For development only)
 CORS_ALLOW_ALL_ORIGINS = True # we added this
@@ -119,8 +143,11 @@ REST_FRAMEWORK = {
     #we will comment this for the mean time because  we are practicing CRUD in FE AND BE
        #'rest_framework.authentication.SessionAuthentication',  # for login via Django admin
         'rest_framework.authentication.BasicAuthentication',     # for API testing with cURL or Postman
+        #Add this for dj-rest-auth, and other authentication
         'rest_framework.authentication.TokenAuthentication',
+
         #e will comment this for the mean time because  we are practicing CRUD in FE AND BE
+        #Add this for dj-rest-auth
         'rest_framework_simplejwt.authentication.JWTAuthentication', #add this for authentication
     ],
     'DEFAULT_PERMISSION_CLASSES': [
@@ -129,6 +156,15 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ]
 }
+
+
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+}
+
+
 
 
 
@@ -153,3 +189,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Disable email confirmation for now because we want just to register
+#Soon we will add EmailBackend
+ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_EMAIL_REQUIRED = False
+
+
+
