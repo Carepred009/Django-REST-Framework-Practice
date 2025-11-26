@@ -21,7 +21,7 @@ import InputFields from './components/InputFields.vue'
 
 import VForms_sample from './components/VForms_sample.vue' //import the VForms_sample.vue and pass to the object
 
-import router from './router'
+//import router from './router'
 
 
 
