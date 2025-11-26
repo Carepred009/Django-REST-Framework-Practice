@@ -13,11 +13,6 @@ from rest_framework_simplejwt.views import (
 from django.urls import path, include
 urlpatterns  = [
 
-    #use for registration of new user
-    path('auth/', include('dj_rest_auth.urls')),
-    path('auth/registration/', include('dj_rest_auth.registration.urls')),
-
-
 
 
 
