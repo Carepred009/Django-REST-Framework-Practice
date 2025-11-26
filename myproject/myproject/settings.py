@@ -194,6 +194,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #Soon we will add EmailBackend
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_EMAIL_REQUIRED = False
+#add this to log in in Browsable API /auth/login/
+ACCOUNT_EMAIL_VERIFICATION = "none"
 
 
 

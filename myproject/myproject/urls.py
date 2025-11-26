@@ -24,5 +24,10 @@ from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    # use for registration of new user
+    # Django REST Auth URLs (global)
+    path('auth/', include('dj_rest_auth.urls')),
+    path('auth/registration/', include('dj_rest_auth.registration.urls')),
+
     path('', include('myapp.urls')),
 ]
