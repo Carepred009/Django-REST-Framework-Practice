@@ -70,12 +70,6 @@ class ProductCreateAPIView(generics.CreateAPIView):
 def product_create(request):
     return render(request,'myapp/product_create.html')
 
-
-
-#display for Vue
-def display_category(request):
-    return render(request,'DRF_Vue/DRF_Vue_display.html')
-
 #Will use this for now fetch with js script
 #We will use this for Vue.js
 class CategoryListAPIView(generics.ListAPIView):
@@ -83,6 +77,13 @@ class CategoryListAPIView(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     pagination_class = None  # disable pagination
+
+
+#display for Vue
+def display_category(request):
+    return render(request,'DRF_Vue/DRF_Vue_display.html')
+
+
 
 
 #this the function view for the display to the data retrieve bay backend
