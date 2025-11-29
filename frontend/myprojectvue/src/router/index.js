@@ -19,11 +19,15 @@ import Dashboard from "../views/Dashboard.vue";
 //use for registration
 import Registration from "../views/Registration.vue"
 
+//user for Product Creation with FK
+import Product from "../views/Products.vue"
+
 
 const routes = [
   { path: "/", component: Login },
   { path: "/dashboard", component: Dashboard },
   {path : "/registration", component: Registration},
+  { path : "/product_creates", component: Product},
 ];
 
 
