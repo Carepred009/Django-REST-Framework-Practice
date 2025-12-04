@@ -22,12 +22,15 @@ import Registration from "../views/Registration.vue"
 //user for Product Creation with FK
 import Product from "../views/Products.vue"
 
+//display product data with delete button
+import display_delete from "../views/display_delete.vue"
 
 const routes = [
   { path: "/", component: Login },
   { path: "/dashboard", component: Dashboard },
   {path : "/registration", component: Registration},
   { path : "/product_creates", component: Product},
+   {path : "/product_delete", component: display_delete},
 ];
 
 

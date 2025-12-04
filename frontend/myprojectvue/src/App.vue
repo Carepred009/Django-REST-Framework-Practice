@@ -4,7 +4,7 @@
 
 <template>
   <div id="app">
-  <!--  <router-view /> -->
+  <router-view />
 
     <!--
              <router-view /> is a built-in placeholder.
@@ -23,7 +23,7 @@
     <h1>
       <!-- <v-form_sample/> -->
 
-       <display-products/>
+    <!--   <display-products/> -->
     </h1>
 
   </div>
