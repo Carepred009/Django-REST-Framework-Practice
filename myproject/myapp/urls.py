@@ -2,7 +2,7 @@ from tkinter.font import names
 
 
 
-from .views import DashboardView, BookCreateAPIView, ItemDeleteAPIView, BookRetrieveUpdateAPIView, ProductListCreateAPIView, CategoryListAPIView, ProductUpdateAPIView, ProductDeleteAPIView, \
+from .views import  DisplayUser ,DashboardView, BookCreateAPIView, ItemDeleteAPIView, BookRetrieveUpdateAPIView, ProductListCreateAPIView, CategoryListAPIView, ProductUpdateAPIView, ProductDeleteAPIView, \
     product_page, message_list, ItemListCreateAPIView, ProductCreateAPIView, product_create, product_update, display_category
 
 from rest_framework_simplejwt.views import (
@@ -14,6 +14,8 @@ from django.urls import path, include
 urlpatterns  = [
 
 
+    #url path/ API endpoint for display all the users
+    path('api/users/',DisplayUser.as_view(), name="display_user"),
 
 
 

@@ -23,9 +23,14 @@ import VForms_sample from './components/VForms_sample.vue' //import the VForms_s
 
 //import router from './router'
 
+//displya product with FK
+import Display_Products from './components/Display_products_FK.vue'
 
 
 const app = createApp(App)
+
+//display products with FK
+app.component('display-products', Display_Products)
 
 //pass the data to this
 app.component('v-form_sample',  VForms_sample )
