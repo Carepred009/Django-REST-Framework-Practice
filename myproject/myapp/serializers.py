@@ -23,9 +23,6 @@ class  CategorySerializer(serializers.ModelSerializer):
         fields = ['id','name']
 
 
-
-
-
 class ProductSerializer(serializers.ModelSerializer):
     #category_name = serializers.StringRelatedField(source='category', read_only=True) #uses __str__ of Category
     category = CategorySerializer(read_only=True) # Nested Serializer

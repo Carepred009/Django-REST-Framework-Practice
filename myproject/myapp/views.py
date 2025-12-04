@@ -74,6 +74,12 @@ def message_list(request):
     return Response(data)
 
 
+#view for Retrieve and Delete data
+class ProductRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+
 
 class ProductCreateAPIView(generics.CreateAPIView):
     queryset = Product.objects.all()
