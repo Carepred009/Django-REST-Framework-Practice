@@ -13,8 +13,20 @@ from  rest_framework.decorators import api_view
 
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
+#Access the User model in the admin
+from django.contrib.auth.models import User
+
 
 # Create your views here.
+
+#Display all users use APIView
+class DisplayUser(APIView):
+    def get(self,request):
+        users = User.objects.values("id","username") #gets the field id and username
+        return  Response(users)
+
+
+
 
 class DashboardView(APIView):
     permission_classes = [IsAuthenticated]
@@ -113,4 +125,5 @@ class ProductDetailAPIView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 '''
+
 

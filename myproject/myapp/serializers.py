@@ -20,7 +20,11 @@ class ItemSerializer(serializers.ModelSerializer):
 class  CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = '__all__'
+        fields = ['id','name']
+
+
+
+
 
 class ProductSerializer(serializers.ModelSerializer):
     #category_name = serializers.StringRelatedField(source='category', read_only=True) #uses __str__ of Category
@@ -33,4 +37,3 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = ['id','name','price','category_id','category', 'description']
-
