@@ -25,12 +25,23 @@ import Product from "../views/Products.vue"
 //display product data with delete button
 import display_delete from "../views/display_delete.vue"
 
+//for  display the the product details
+import ProductDetails from "../views/ProductDetails.vue"
+
 const routes = [
   { path: "/", component: Login },
   { path: "/dashboard", component: Dashboard },
   {path : "/registration", component: Registration},
   { path : "/product_creates", component: Product},
    {path : "/product_delete", component: display_delete},
+
+   //for  product update with FK
+   {
+   path: '/product_details/:id',  //use this in the url with id
+   name: 'product-details', //this will be use the App.vue to display
+   component: ProductDetails  ,
+    props:true
+    }
 ];
 
 
