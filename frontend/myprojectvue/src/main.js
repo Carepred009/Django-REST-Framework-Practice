@@ -26,8 +26,14 @@ import VForms_sample from './components/VForms_sample.vue' //import the VForms_s
 //displya product with FK
 import Display_Products from './components/Display_products_FK.vue'
 
+//display the update to be updated
+//import updateProduct from './components/updateData_FK.vue'
+
 
 const app = createApp(App)
+
+//display the product to be updated
+//app.component('product-update', updateProduct)
 
 //display products with FK
 app.component('display-products', Display_Products)

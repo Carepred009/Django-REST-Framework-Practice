@@ -113,7 +113,7 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = ProductSerializer
 
 #we will use this for fetch update in html template
-class ProductUpdateAPIView(generics.RetrieveUpdateAPIView):
+class ProductRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 

@@ -2,7 +2,7 @@ from tkinter.font import names
 
 
 
-from .views import  ProductRetrieveDestroyAPIView,DisplayUser ,DashboardView, BookCreateAPIView, ItemDeleteAPIView, BookRetrieveUpdateAPIView, ProductListCreateAPIView, CategoryListAPIView, ProductUpdateAPIView, ProductDeleteAPIView, \
+from .views import ProductRetrieveDestroyAPIView,DisplayUser ,DashboardView, BookCreateAPIView, ItemDeleteAPIView, BookRetrieveUpdateAPIView, ProductListCreateAPIView, CategoryListAPIView, ProductRetrieveUpdateAPIView, ProductDeleteAPIView, \
     product_page, message_list, ItemListCreateAPIView, ProductCreateAPIView, product_create, product_update, display_category
 
 from rest_framework_simplejwt.views import (
@@ -65,11 +65,13 @@ urlpatterns  = [
     path('api/display_delete/<int:pk>/', ProductRetrieveDestroyAPIView.as_view(), name="display_delete"),
 
     #for for Browsable API testing
-    path('product_delete/<int:pk>/', ProductUpdateAPIView.as_view(), name="update_product"),
+    path('product_delete/<int:pk>/', ProductRetrieveUpdateAPIView.as_view(), name="update_product"),
 
     #product displaly from DRF to html template back to DRF
     path('product_update/', product_update, name="product_update"),
 
+    #this url path is for Update only
+    path('api/display_update/<int:pk>/',ProductRetrieveUpdateAPIView.as_view(), name="display-update"),
 
 
     #for delete
