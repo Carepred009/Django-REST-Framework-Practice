@@ -61,6 +61,8 @@ urlpatterns  = [
     #We will us this url path fetch sample data in js for frontend
     path('product_list/',ProductListCreateAPIView.as_view(), name="product_list"),
 
+
+
     #url path for Retrieve and Destroy API endpoint
     path('api/display_delete/<int:pk>/', ProductRetrieveDestroyAPIView.as_view(), name="display_delete"),
 

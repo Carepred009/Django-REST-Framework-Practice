@@ -28,6 +28,9 @@ import display_delete from "../views/display_delete.vue"
 //for  display the the product details
 import ProductDetails from "../views/ProductDetails.vue"
 
+//for product update
+import UpdateProductDataFK from "../views/UpdateProductDataFK.vue"
+
 const routes = [
   { path: "/", component: Login },
   { path: "/dashboard", component: Dashboard },
@@ -41,7 +44,16 @@ const routes = [
    name: 'product-details', //this will be use the App.vue to display
    component: ProductDetails  ,
     props:true
-    }
+    },
+
+    //for product update with FK details
+
+    {
+        path: '/product_update/:id',
+        name: 'product_update',
+        component: UpdateProductDataFK,
+        props:true
+    },
 ];
 
 
